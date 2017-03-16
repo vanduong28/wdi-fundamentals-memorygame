@@ -24,6 +24,7 @@ var cards = [
 
 var cardsInPlay = [];
 var gameBoard = document.getElementById('game-board');
+var resetButton = document.getElementById('reset');
 
 var checkForMatch = function(){
 	if (cardsInPlay[0] === cardsInPlay[1]) {
@@ -48,7 +49,6 @@ var flipCard = function(){
 	isTwoCards();
 	
 }
-
 var createBoard = function(){
 	for (var i = 0; i < cards.length; i++){
 		var cardElement = document.createElement('img');
@@ -56,8 +56,13 @@ var createBoard = function(){
 		cardElement.setAttribute('data-id', i);
 		cardElement.addEventListener('click', flipCard);
 		gameBoard.appendChild(cardElement);
-
 	}
 }
+var resetBoard = function(){
+	cardsInPlay = [];
+	document.getElementById('game-board').innerHTML = '';
+	createBoard();
+}
+resetButton.addEventListener('click', resetBoard);
 
 createBoard();
